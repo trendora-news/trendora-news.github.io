@@ -300,3 +300,10 @@ This project is licensed under the - License.
 <p align="center">
   Built with ❤️ by Yash Saini
 </p>
+
+README-assets/
+├── logo.png
+├── homepage.png
+├── trending-page.png
+├── article-page.png
+└── mobile-view.png
