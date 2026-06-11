@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UK vs Google: Publishers Finally Get AI Opt-Out Rights | Trendora News</title>
+  <meta name="description" content="Britain's CMA orders Google to give publishers opt-out controls over AI scraping — a world first that could reshape how AI search works globally." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d0f;
+      --surface:   #13131a;
+      --border:    #1e1e2e;
+      --blue:      #1a8cff;
+      --blue-dim:  rgba(26,140,255,0.12);
+      --blue-glow: rgba(26,140,255,0.25);
+      --text:      #e8e8f0;
+      --muted:     #7a7a9a;
+      --tag-bg:    rgba(26,140,255,0.15);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo { font-family: 'Sora', sans-serif; font-size: 1.15rem; color: var(--blue); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 780px; margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .category-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--tag-bg); color: var(--blue);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 5px 12px; border-radius: 4px;
+      border: 1px solid rgba(26,140,255,0.3);
+      margin-bottom: 20px;
+    }
+    .category-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+    h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
+      font-weight: 800; line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    h1 span { color: var(--blue); }
+
+    .subtitle {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .meta-row {
+      display: flex; align-items: center; gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.8rem; color: var(--muted);
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-row .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); }
+    .meta-author { color: var(--blue); font-weight: 600; }
+
+    /* ── CONTENT ── */
+    .article-body {
+      max-width: 780px; margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .article-body p { margin-bottom: 22px; color: #d0d0e0; }
+
+    h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: #fff;
+      margin: 44px 0 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--blue);
+    }
+
+    /* Pull-quote */
+    .pull-quote {
+      background: var(--surface);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 26px;
+      margin: 32px 0;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #c8c8e0;
+    }
+    .pull-quote cite {
+      display: block; margin-top: 10px;
+      font-style: normal; font-size: 0.8rem;
+      color: var(--muted); font-weight: 600;
+    }
+
+    /* Key facts box */
+    .key-facts {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--blue);
+      border-radius: 0 0 10px 10px;
+      padding: 24px 28px;
+      margin: 36px 0;
+    }
+    .key-facts-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .key-facts ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .key-facts li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 0.92rem; color: #c8c8e0;
+    }
+    .key-facts li::before {
+      content: '→'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Impact meter */
+    .impact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px; margin: 32px 0;
+    }
+    .impact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px;
+    }
+    .impact-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .impact-value { font-family: 'Sora', sans-serif; font-size: 1.45rem; font-weight: 800; color: var(--blue); }
+    .impact-desc { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+    /* Tags footer */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .tag { background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--blue); text-decoration: none; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .back-link:hover { opacity: 0.8; }
+
+    footer {
+      text-align: center; padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.8rem;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero, .article-body { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">TRENDORA NEWS</a>
+  <ul class="nav-links">
+    <li><a href="#">Tech</a></li>
+    <li><a href="#">Money</a></li>
+    <li><a href="#">Culture</a></li>
+    <li><a href="#">Life</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <a class="back-link" href="#">← Back to Home</a>
+  <div class="category-tag">Tech &amp; Policy</div>
+  <h1>UK vs Google: Publishers <span>Finally Get</span> AI Opt-Out Rights</h1>
+  <p class="subtitle">Britain's competition watchdog has ordered Google to give news sites real control over AI content scraping — calling it a world first. Here's what it means for the internet.</p>
+  <div class="meta-row">
+    <span class="meta-author">Trendora News</span>
+    <span class="dot"></span>
+    <span>June 11, 2026</span>
+    <span class="dot"></span>
+    <span>5 min read</span>
+    <span class="dot"></span>
+    <span>🌍 UK · AI · Search</span>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <p>For years, news publishers have watched Google vacuum up their articles, then summarise them at the top of search results — leaving readers with no reason to click through. Traffic dried up. Revenue followed. And there was nothing anyone could do about it. That just changed.</p>
+
+  <p>Britain's Competition and Markets Authority (CMA) issued a landmark order on June 4, 2026, directing Google to give online publishers effective opt-out tools — the first such regulatory mandate anywhere in the world. The decision is the result of new digital powers the CMA received to rein in the UK's most dominant tech players.</p>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-label">Regulator</div>
+      <div class="impact-value">CMA</div>
+      <div class="impact-desc">UK Competition & Markets Authority</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-label">Status</div>
+      <div class="impact-value">World First</div>
+      <div class="impact-desc">No other country has mandated this</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-label">Deadline</div>
+      <div class="impact-value">TBD</div>
+      <div class="impact-desc">Google exploring implementation</div>
+    </div>
+  </div>
+
+  <h2>What Google Must Now Do</h2>
+
+  <p>Under the CMA's order, Google is required to provide publishers with "effective tools" to prevent their content from being fed into AI Overviews, AI Mode, and other generative AI search features. Crucially, this opt-out cannot come with a penalty — publishers who choose not to participate in AI features must not be penalised in Google's standard organic search rankings.</p>
+
+  <p>The watchdog also wants Google to be far more transparent about how it uses publisher content in AI-generated responses, and to properly attribute sources when AI features display summarised information — something critics say has been largely absent.</p>
+
+  <div class="pull-quote">
+    "They would provide a fairer deal for content publishers, particularly news organisations, over how their content is used in Google's AI Overviews."
+    <cite>— Will Hayter, CMA Executive Director for Digital Markets</cite>
+  </div>
+
+  <h2>Why Publishers Are Celebrating</h2>
+
+  <p>The root problem is straightforward: AI Overviews answer questions directly inside Google Search. Users get what they need without clicking any link. For publishers whose business model depends on that click, the effect has been devastating — a sharp, sustained drop in referral traffic that directly hits advertising revenue and editorial budgets.</p>
+
+  <p>The CMA's report explicitly acknowledged this: news publishers have suffered significant traffic declines since Google rolled out AI Overviews, and the regulator framed the opt-out rule as essential to the "long-term sustainability" of the publishing industry.</p>
+
+  <div class="key-facts">
+    <div class="key-facts-title">Key Provisions of the CMA Order</div>
+    <ul>
+      <li>Publishers can opt out of AI content scraping without losing organic search ranking</li>
+      <li>Google must offer "meaningful choice" over how content appears in AI-generated responses</li>
+      <li>Full transparency required about the scraping and attribution process</li>
+      <li>Google cannot prioritise sites with existing advertising deals in search results</li>
+      <li>Users must find it easier to switch to alternative search engines</li>
+    </ul>
+  </div>
+
+  <h2>Google's Response: "We're Exploring It"</h2>
+
+  <p>Google hasn't pushed back hard — at least publicly. Ron Eden, Google's Principal for Product Management, acknowledged the order and said the company is "now exploring updates to our controls to let sites specifically opt out of Search generative AI features." He stressed that any changes must avoid "breaking search in a way that leads to a fragmented or confusing experience for people."</p>
+
+  <p>Whether those controls will extend to publishers outside the UK remains unclear. Google has said it is "optimistic" about finding a path forward — language that regulatory watchers typically read as carefully managed non-commitment.</p>
+
+  <h2>The Bigger Picture: A Global Precedent?</h2>
+
+  <p>The CMA's action carries weight beyond British shores. Regulators in the EU, Australia, and Canada have all been watching Google's AI search expansion with growing concern. A workable opt-out framework mandated by one G7 country creates a template — and political pressure — that others may follow.</p>
+
+  <p>For the AI search era, this is the first real test of whether regulators can meaningfully constrain how dominant platforms harvest and repackage the open web. The answer the CMA gives could define the rules of the game for the next decade of journalism, publishing, and search.</p>
+
+  <div class="pull-quote">
+    The opt-out rule is framed as essential to the "long-term sustainability" of publishers — and its effects could ripple far beyond the UK.
+  </div>
+
+  <div class="tags">
+    <span class="tag">Google</span>
+    <span class="tag">AI Overviews</span>
+    <span class="tag">CMA</span>
+    <span class="tag">UK Tech Policy</span>
+    <span class="tag">Publishers</span>
+    <span class="tag">Search</span>
+    <span class="tag">AI Regulation</span>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 <a href="#">Trendora News</a> · Trending topics across tech, money, culture &amp; life</p>
+</footer>
+
+</body>
+</html>
