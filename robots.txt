@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://trendora-news.github.io/sitemap.xml
