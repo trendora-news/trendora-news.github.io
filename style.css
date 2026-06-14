@@ -111,7 +111,8 @@ a { text-decoration: none; color: inherit; }
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 75vh;
+  max-height: 85vh;
   display: flex;
   align-items: center;
   padding: 0 5vw;
@@ -442,6 +443,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .cat-pill {
+  display: inline-block;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 50px;
@@ -451,12 +453,16 @@ a { text-decoration: none; color: inherit; }
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  color: var(--white);
+  text-decoration: none;
 }
 
 .cat-pill:hover {
   border-color: var(--blue);
   color: var(--blue);
   background: var(--blue-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(29,155,240,0.2);
 }
 
 /* ===== NEWSLETTER ===== */
