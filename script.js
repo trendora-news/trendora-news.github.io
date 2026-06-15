@@ -1,84 +1,52 @@
 // Trendora — script.js
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Mobile nav toggle
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-  }
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
 
-  // Fade-in on scroll
-  const fadeTargets = document.querySelectorAll('.post-card, .featured-card, .cat-pill, .hero-content, .hero-float, .page-hero, .contact-form');
-  if ('IntersectionObserver' in window && fadeTargets.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.08 });
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+}
 
-    fadeTargets.forEach((el) => {
-      if (el.classList.contains('hero-content') || el.classList.contains('hero-float') || el.classList.contains('page-hero') || el.classList.contains('contact-form')) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(18px)';
-      } else {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-      }
-      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
-      observer.observe(el);
-    });
-  }
-
-  // Newsletter
-  const newsletterBtn = document.querySelector('.newsletter-form button');
-  const newsletterInput = document.querySelector('.newsletter-form input');
-  if (newsletterBtn && newsletterInput) {
-    newsletterBtn.addEventListener('click', () => {
-      if (newsletterInput.value.includes('@')) {
-        newsletterBtn.textContent = '✓ Subscribed!';
-        newsletterBtn.style.background = '#22c55e';
-        newsletterInput.value = '';
-      } else {
-        newsletterInput.style.borderColor = 'red';
-        setTimeout(() => {
-          newsletterInput.style.borderColor = '';
-        }, 1500);
+// Fade-in on scroll
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
       }
     });
-  }
+  }, { threshold: 0.12 });
 
-  // Topic filter on homepage
-  const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
-  const postCards = Array.from(document.querySelectorAll('.post-card[data-topic]'));
-  if (filterButtons.length && postCards.length) {
-    const applyFilter = (filter) => {
-      filterButtons.forEach((button) => {
-        const active = button.dataset.filter === filter;
-        button.classList.toggle('is-active', active);
-        button.setAttribute('aria-pressed', String(active));
-      });
+  document.querySelectorAll('.post-card, .featured-card, .cat-pill, .float-card').forEach((el) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+}
 
-      postCards.forEach((card) => {
-        const topics = (card.dataset.topic || '').toLowerCase().split(/\s+/).filter(Boolean);
-        const visible = filter === 'all' || topics.includes(filter);
-        card.classList.toggle('is-hidden', !visible);
-      });
-    };
+// Newsletter
+const newsletterBtn = document.querySelector('.newsletter-form button');
+if (newsletterBtn) {
+  newsletterBtn.addEventListener('click', () => {
+    const input = document.querySelector('.newsletter-form input');
+    if (!input) return;
+    if (input.value.includes('@')) {
+      newsletterBtn.textContent = '✓ Subscribed!';
+      newsletterBtn.style.background = '#16a34a';
+      input.value = '';
+    } else {
+      input.style.borderColor = 'red';
+      setTimeout(() => input.style.borderColor = '', 1500);
+    }
+  });
+}
 
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all'));
-    });
-
-    applyFilter('all');
-  }
-
-  // ===== CURSOR SPRINKLE EFFECT =====
+// ===== CURSOR SPRINKLE EFFECT =====
+(function () {
   const canvas = document.createElement('canvas');
   canvas.id = 'sprinkle-canvas';
   document.body.appendChild(canvas);
@@ -92,22 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resize);
 
   const particles = [];
-  const colors = ['#0a84ff', '#ff6b1a', '#ffaa00', '#70d4ff', '#ffffff', '#00c853', '#ff4dff'];
+  const colors = ['#0a84ff', '#ff6b1a', '#ffb000', '#6dd3ff', '#ffffff', '#16a34a', '#ff4dd8'];
 
   class Particle {
     constructor(x, y) {
       this.x = x;
       this.y = y;
-      this.size = Math.random() * 6 + 2;
+      this.size = Math.random() * 5 + 2;
       this.color = colors[Math.floor(Math.random() * colors.length)];
       this.speedX = (Math.random() - 0.5) * 4;
       this.speedY = (Math.random() - 0.5) * 4 - 2;
       this.gravity = 0.12;
       this.life = 1;
-      this.decay = Math.random() * 0.025 + 0.015;
-      this.shape = Math.random() > 0.5 ? 'circle' : 'star';
+      this.decay = Math.random() * 0.022 + 0.014;
+      this.shape = Math.random() > 0.5 ? 'circle' : 'diamond';
       this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.18;
     }
 
     update() {
@@ -131,15 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fill();
       } else {
         ctx.beginPath();
-        for (let i = 0; i < 4; i++) {
-          const angle = (i / 4) * Math.PI * 2;
-          const radius = i % 2 === 0 ? this.size : this.size * 0.4;
-          ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-        }
+        ctx.moveTo(0, -this.size);
+        ctx.lineTo(this.size * 0.7, 0);
+        ctx.lineTo(0, this.size);
+        ctx.lineTo(-this.size * 0.7, 0);
         ctx.closePath();
         ctx.fill();
       }
-
       ctx.restore();
     }
   }
@@ -150,26 +116,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('mousemove', (e) => {
     const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-    if (dist > 5) {
-      const count = Math.min(Math.floor(dist / 5), 5);
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle(e.clientX, e.clientY));
-      }
+    if (dist > 8) {
+      const count = Math.min(Math.floor(dist / 6), 5);
+      for (let i = 0; i < count; i++) particles.push(new Particle(e.clientX, e.clientY));
       lastX = e.clientX;
       lastY = e.clientY;
     }
   });
 
   document.addEventListener('click', (e) => {
-    for (let i = 0; i < 20; i++) {
-      particles.push(new Particle(e.clientX, e.clientY));
-    }
+    for (let i = 0; i < 18; i++) particles.push(new Particle(e.clientX, e.clientY));
   });
 
   window.addEventListener('scroll', () => {
     const delta = Math.abs(window.scrollY - lastScrollY);
-    if (delta > 5) {
-      const count = Math.min(Math.floor(delta / 10), 8);
+    if (delta > 8) {
+      const count = Math.min(Math.floor(delta / 12), 8);
       for (let i = 0; i < count; i++) {
         particles.push(new Particle(
           Math.random() * window.innerWidth,
@@ -190,4 +152,4 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animate);
   }
   animate();
-});
+})();
