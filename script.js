@@ -1,49 +1,84 @@
 // Trendora — script.js
 
-// Mobile nav toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelector('.nav-links');
-if (hamburger) {
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  }
 
-// Fade-in on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
+  // Fade-in on scroll
+  const fadeTargets = document.querySelectorAll('.post-card, .featured-card, .cat-pill, .hero-content, .hero-float, .page-hero, .contact-form');
+  if ('IntersectionObserver' in window && fadeTargets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
 
-document.querySelectorAll('.post-card, .featured-card, .cat-pill').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
-});
+    fadeTargets.forEach((el) => {
+      if (el.classList.contains('hero-content') || el.classList.contains('hero-float') || el.classList.contains('page-hero') || el.classList.contains('contact-form')) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+      } else {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+      }
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      observer.observe(el);
+    });
+  }
 
-// Newsletter
-const newsletterBtn = document.querySelector('.newsletter-form button');
-if (newsletterBtn) {
-  newsletterBtn.addEventListener('click', () => {
-    const input = document.querySelector('.newsletter-form input');
-    if (input && input.value.includes('@')) {
-      newsletterBtn.textContent = '✓ Subscribed!';
-      newsletterBtn.style.background = '#22c55e';
-      input.value = '';
-    } else {
-      input.style.borderColor = 'red';
-      setTimeout(() => input.style.borderColor = '', 1500);
-    }
-  });
-}
+  // Newsletter
+  const newsletterBtn = document.querySelector('.newsletter-form button');
+  const newsletterInput = document.querySelector('.newsletter-form input');
+  if (newsletterBtn && newsletterInput) {
+    newsletterBtn.addEventListener('click', () => {
+      if (newsletterInput.value.includes('@')) {
+        newsletterBtn.textContent = '✓ Subscribed!';
+        newsletterBtn.style.background = '#22c55e';
+        newsletterInput.value = '';
+      } else {
+        newsletterInput.style.borderColor = 'red';
+        setTimeout(() => {
+          newsletterInput.style.borderColor = '';
+        }, 1500);
+      }
+    });
+  }
 
-// ===== CURSOR SPRINKLE EFFECT =====
-(function() {
+  // Topic filter on homepage
+  const filterButtons = Array.from(document.querySelectorAll('[data-filter]'));
+  const postCards = Array.from(document.querySelectorAll('.post-card[data-topic]'));
+  if (filterButtons.length && postCards.length) {
+    const applyFilter = (filter) => {
+      filterButtons.forEach((button) => {
+        const active = button.dataset.filter === filter;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+
+      postCards.forEach((card) => {
+        const topics = (card.dataset.topic || '').toLowerCase().split(/\s+/).filter(Boolean);
+        const visible = filter === 'all' || topics.includes(filter);
+        card.classList.toggle('is-hidden', !visible);
+      });
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all'));
+    });
+
+    applyFilter('all');
+  }
+
+  // ===== CURSOR SPRINKLE EFFECT =====
   const canvas = document.createElement('canvas');
   canvas.id = 'sprinkle-canvas';
   document.body.appendChild(canvas);
@@ -57,7 +92,7 @@ if (newsletterBtn) {
   window.addEventListener('resize', resize);
 
   const particles = [];
-  const colors = ['#1d9bf0', '#ff6b1a', '#ffaa00', '#70d4ff', '#ffffff', '#00ff88', '#ff4dff'];
+  const colors = ['#0a84ff', '#ff6b1a', '#ffaa00', '#70d4ff', '#ffffff', '#00c853', '#ff4dff'];
 
   class Particle {
     constructor(x, y) {
@@ -95,47 +130,42 @@ if (newsletterBtn) {
         ctx.arc(0, 0, this.size, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        // Draw a small star/diamond
         ctx.beginPath();
         for (let i = 0; i < 4; i++) {
           const angle = (i / 4) * Math.PI * 2;
-          const r = i % 2 === 0 ? this.size : this.size * 0.4;
-          ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
+          const radius = i % 2 === 0 ? this.size : this.size * 0.4;
+          ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
         }
         ctx.closePath();
         ctx.fill();
       }
+
       ctx.restore();
     }
   }
 
-  let mouseX = 0, mouseY = 0;
-  let lastX = 0, lastY = 0;
-  let frameCount = 0;
+  let lastX = 0;
+  let lastY = 0;
+  let lastScrollY = window.scrollY;
 
   document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    const dist = Math.hypot(mouseX - lastX, mouseY - lastY);
+    const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
     if (dist > 5) {
       const count = Math.min(Math.floor(dist / 5), 5);
       for (let i = 0; i < count; i++) {
-        particles.push(new Particle(mouseX, mouseY));
+        particles.push(new Particle(e.clientX, e.clientY));
       }
-      lastX = mouseX;
-      lastY = mouseY;
+      lastX = e.clientX;
+      lastY = e.clientY;
     }
   });
 
-  // Burst on click
   document.addEventListener('click', (e) => {
     for (let i = 0; i < 20; i++) {
       particles.push(new Particle(e.clientX, e.clientY));
     }
   });
 
-  // Scroll sprinkles
-  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     const delta = Math.abs(window.scrollY - lastScrollY);
     if (delta > 5) {
@@ -160,4 +190,4 @@ if (newsletterBtn) {
     requestAnimationFrame(animate);
   }
   animate();
-})();
+});
