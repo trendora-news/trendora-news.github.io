@@ -1,126 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Trending Now — AI, Tech & Money | Trendora News</title>
-  <meta name="description" content="The hottest stories in AI, tech and money right now. Curated for India's youth by Trendora News."/>
-  <meta name="keywords" content="trending AI news, trending tech India, money news India, latest news 2026"/>
-  <meta name="author" content="Yash — Trendora News"/>
+  <meta name="description" content="All the hottest stories in AI, tech and money — curated for Indian youth by Trendora News."/>
   <meta name="robots" content="index, follow"/>
-  <meta property="og:title" content="Trending Now — AI, Tech & Money | Trendora News"/>
-  <meta property="og:description" content="The hottest stories in AI, tech and money right now. Curated for India's youth by Trendora News."/>
-  <meta property="og:url" content="https://trendora-news.github.io/trending.html"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="https://trendora-news.github.io/logo.png"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Trending Now — AI, Tech & Money | Trendora News"/>
-  <meta name="twitter:description" content="The hottest stories in AI, tech and money right now. Curated for India's youth by Trendora News."/>
-  <link rel="canonical" href="https://trendora-news.github.io/trending.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-  <link rel="manifest" href="/site.webmanifest"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="manifest" href="site.webmanifest"/>
   <meta name="theme-color" content="#0a84ff"/>
-  <meta name="msapplication-TileColor" content="#ffffff"/>
-  <meta name="msapplication-TileImage" content="/android-chrome-192x192.png"/>
-
 </head>
 <body>
   <nav class="navbar">
-    <a href="index.html" class="logo-wrap" aria-label="Trendora home">
-      <img src="logo.png" alt="Trendora News" class="logo-img" />
+    <a href="index.html" class="logo-wrap">
+      <img src="logo.png" alt="Trendora News" class="logo-img"/>
     </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="">Home</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
       <li><a href="trending.html" class="active">Trending</a></li>
-      <li><a href="about.html" class="">About</a></li>
-      <li><a href="contact.html" class="">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+    <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
 
-  <div class="page-hero">
-    <h1>🔥 TRENDING</h1>
-    <p>The newest stories first — AI, engineering, money, scams, and culture.</p>
+  <div class="page-hero" style="text-align:left;padding-bottom:2rem;">
+    <h1>🔥 TRENDING NOW</h1>
+    <p>All stories — newest first. AI, Tech, Money, Scams, World.</p>
   </div>
 
-  <section class="section" style="padding-top:1rem;">
+  <!-- TOPIC FILTER -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 5vw 2rem;">
+    <div class="categories-grid">
+      <a href="topic-ai-tech.html" class="cat-pill">🤖 AI &amp; Tech</a>
+      <a href="topic-money.html" class="cat-pill">💸 Money</a>
+      <a href="topic-world.html" class="cat-pill">🌍 World</a>
+      <a href="topic-scam-alerts.html" class="cat-pill">⚠️ Scam Alerts</a>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0;">
     <div class="posts-grid">
-      <a href="posts/disney-ai-coding.html" class="post-card">
-        <div class="post-cat">AI &amp; Tech</div>
-        <h3>Disney Tells Engineers to Minimise AI-Coded Products</h3>
-        <p>After giving teams access to Claude and Cursor, Disney is now asking for better quality control around AI-generated code.</p>
-        <span class="post-meta">June 15, 2026 • 5 min</span>
+
+      <a href="posts/us-blocks-ai.html" class="post-card">
+        <div class="post-cat">🇺🇸 AI &amp; Policy</div>
+        <h3>U.S. Blocks Advanced AI: Anthropic Models Suspended for Foreign Users</h3>
+        <p>Mythos 5 and Fable 5 suspended globally on national security grounds — India access cut off immediately.</p>
+        <span class="post-meta">June 16, 2026 • 5 min</span>
       </a>
 
-      <a href="posts/ai-railway-smart-cane.html" class="post-card">
-        <div class="post-cat">Engineering &amp; World</div>
-        <h3>AI Railway Monitoring System and Smart Cane Up for Top Engineering Award</h3>
-        <p>The MacRobert Award shortlist highlights engineering that improves safety, accessibility and scientific analysis.</p>
-        <span class="post-meta">June 15, 2026 • 5 min</span>
+      <a href="posts/india-ai-revenue.html" class="post-card">
+        <div class="post-cat">🇮🇳 India &amp; AI</div>
+        <h3>India Leads Global AI Revenue Expectations: 52% of Companies All In</h3>
+        <p>BCG global study confirms India is the world's most AI-optimistic economy.</p>
+        <span class="post-meta">June 16, 2026 • 4 min</span>
+      </a>
+
+      <a href="posts/superai-singapore.html" class="post-card">
+        <div class="post-cat">🌏 AI &amp; World</div>
+        <h3>SuperAI 2026: Asia's Biggest AI Summit Hits Full Capacity</h3>
+        <p>Singapore becomes Asia's frontier AI hub — deep-tech founders and global investors all in one room.</p>
+        <span class="post-meta">June 14, 2026 • 5 min</span>
+      </a>
+
+      <a href="posts/deepfake-scam-india.html" class="post-card">
+        <div class="post-cat">⚠️ Scam Alert</div>
+        <h3>Deepfake Warning: Fake Nirmala Sitharaman Videos Targeting Indian Investors</h3>
+        <p>PIB Fact Check issues urgent alert about AI deepfake videos promoting fake investment schemes.</p>
+        <span class="post-meta">June 14, 2026 • 4 min</span>
       </a>
 
       <a href="posts/openai-ipo.html" class="post-card">
-        <div class="post-cat">Money &amp; Tech</div>
+        <div class="post-cat">💰 Money &amp; Tech</div>
         <h3>OpenAI IPO: ChatGPT Is Going Public</h3>
-        <p>OpenAI's confidential filing signalled a huge moment for the AI market and investors watching it closely.</p>
+        <p>Confidential SEC filing targets September debut at $852B valuation.</p>
         <span class="post-meta">June 10, 2026 • 6 min</span>
       </a>
 
       <a href="posts/google-spacex-compute.html" class="post-card">
-        <div class="post-cat">AI &amp; Tech</div>
+        <div class="post-cat">🚀 AI &amp; Tech</div>
         <h3>Google Pays SpaceX $920M/Month for AI Compute</h3>
-        <p>Massive infrastructure spending shows how intense the race for compute has become.</p>
+        <p>A $30 billion deal for 110,000 Nvidia GPUs. The AI compute landlord era is here.</p>
         <span class="post-meta">June 10, 2026 • 5 min</span>
       </a>
 
-      <a href="posts/deepfake-scam-india.html" class="post-card">
-        <div class="post-cat">Scam Alert</div>
-        <h3>Deepfake Warning: Fake Nirmala Sitharaman Videos Are Targeting Indian Investors</h3>
-        <p>AI scam videos are getting more persuasive, and this alert matters for families and investors.</p>
-        <span class="post-meta">June 14, 2026 • 4 min</span>
-      </a>
-
       <a href="posts/instagram-encryption.html" class="post-card">
-        <div class="post-cat">Tech</div>
-        <h3>Instagram Can Now Read Your DMs</h3>
-        <p>Privacy changes around encryption continue to reshape how people think about messaging apps.</p>
+        <div class="post-cat">🔐 Privacy</div>
+        <h3>Instagram Removed End-to-End Encryption</h3>
+        <p>Meta removed E2E encryption from Instagram DMs. Your messages may no longer be private.</p>
         <span class="post-meta">May 8, 2026 • 5 min</span>
       </a>
 
       <a href="posts/ai-jobs.html" class="post-card">
-        <div class="post-cat">AI</div>
-        <h3>AI Is Taking Over Jobs — And It's Already Happening</h3>
-        <p>Automation and workforce changes remain one of the biggest AI stories for students and job seekers.</p>
+        <div class="post-cat">🤖 AI &amp; Work</div>
+        <h3>AI Is Taking Over Jobs — 16,000 Lost Every Month</h3>
+        <p>Which jobs are at risk and how to stay relevant in the AI economy of 2026.</p>
         <span class="post-meta">May 8, 2026 • 6 min</span>
       </a>
 
       <a href="posts/mothers-day.html" class="post-card">
-        <div class="post-cat">Life</div>
-        <h3>7 Ways to Impress Your Mom on Mother's Day</h3>
-        <p>Simple and practical ideas for one of the most shareable lifestyle stories on the site.</p>
-        <span class="post-meta">May 8, 2026 • 4 min</span>
+        <div class="post-cat">❤️ Life</div>
+        <h3>Mother's Day 2026: Gift Ideas That Actually Work</h3>
+        <p>Real, thoughtful options for every budget that your mom will actually love.</p>
+        <span class="post-meta">May 8, 2026 • 3 min</span>
       </a>
+
     </div>
   </section>
+
   <footer class="footer">
     <div class="footer-logo">
-      <img src="logo.png" alt="Trendora News" class="logo-img footer-logo-img" />
+      <img src="logo.png" alt="Trendora News" class="logo-img footer-logo-img"/>
     </div>
     <p class="footer-tagline">By Yash • yashsainii.work@gmail.com</p>
     <div class="footer-links">
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="https://instagram.com/meyxshh" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="https://instagram.com/meyxshh" target="_blank">Instagram</a>
     </div>
-    <p class="footer-copy">© 2026 Trendora. All rights reserved.</p>
+    <p class="footer-copy">© 2026 Trendora News. All rights reserved.</p>
   </footer>
   <script src="script.js"></script>
-
 </body>
 </html>
