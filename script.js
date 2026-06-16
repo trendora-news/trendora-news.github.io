@@ -1,39 +1,42 @@
 // Trendora — script.js
 
-// Mobile nav toggle
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
-if (hamburger) {
+
+if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
   });
 }
 
 // Fade-in on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
 
-document.querySelectorAll('.post-card, .featured-card, .cat-pill').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(el);
-});
+  document.querySelectorAll('.post-card, .featured-card, .cat-pill, .float-card').forEach((el) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+}
 
 // Newsletter
 const newsletterBtn = document.querySelector('.newsletter-form button');
 if (newsletterBtn) {
   newsletterBtn.addEventListener('click', () => {
     const input = document.querySelector('.newsletter-form input');
-    if (input && input.value.includes('@')) {
+    if (!input) return;
+    if (input.value.includes('@')) {
       newsletterBtn.textContent = '✓ Subscribed!';
-      newsletterBtn.style.background = '#22c55e';
+      newsletterBtn.style.background = '#16a34a';
       input.value = '';
     } else {
       input.style.borderColor = 'red';
@@ -43,7 +46,7 @@ if (newsletterBtn) {
 }
 
 // ===== CURSOR SPRINKLE EFFECT =====
-(function() {
+(function () {
   const canvas = document.createElement('canvas');
   canvas.id = 'sprinkle-canvas';
   document.body.appendChild(canvas);
@@ -57,22 +60,22 @@ if (newsletterBtn) {
   window.addEventListener('resize', resize);
 
   const particles = [];
-  const colors = ['#1d9bf0', '#ff6b1a', '#ffaa00', '#70d4ff', '#ffffff', '#00ff88', '#ff4dff'];
+  const colors = ['#0a84ff', '#ff6b1a', '#ffb000', '#6dd3ff', '#ffffff', '#16a34a', '#ff4dd8'];
 
   class Particle {
     constructor(x, y) {
       this.x = x;
       this.y = y;
-      this.size = Math.random() * 6 + 2;
+      this.size = Math.random() * 5 + 2;
       this.color = colors[Math.floor(Math.random() * colors.length)];
       this.speedX = (Math.random() - 0.5) * 4;
       this.speedY = (Math.random() - 0.5) * 4 - 2;
       this.gravity = 0.12;
       this.life = 1;
-      this.decay = Math.random() * 0.025 + 0.015;
-      this.shape = Math.random() > 0.5 ? 'circle' : 'star';
+      this.decay = Math.random() * 0.022 + 0.014;
+      this.shape = Math.random() > 0.5 ? 'circle' : 'diamond';
       this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.18;
     }
 
     update() {
@@ -95,13 +98,11 @@ if (newsletterBtn) {
         ctx.arc(0, 0, this.size, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        // Draw a small star/diamond
         ctx.beginPath();
-        for (let i = 0; i < 4; i++) {
-          const angle = (i / 4) * Math.PI * 2;
-          const r = i % 2 === 0 ? this.size : this.size * 0.4;
-          ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
-        }
+        ctx.moveTo(0, -this.size);
+        ctx.lineTo(this.size * 0.7, 0);
+        ctx.lineTo(0, this.size);
+        ctx.lineTo(-this.size * 0.7, 0);
         ctx.closePath();
         ctx.fill();
       }
@@ -109,37 +110,28 @@ if (newsletterBtn) {
     }
   }
 
-  let mouseX = 0, mouseY = 0;
-  let lastX = 0, lastY = 0;
-  let frameCount = 0;
+  let lastX = 0;
+  let lastY = 0;
+  let lastScrollY = window.scrollY;
 
   document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    const dist = Math.hypot(mouseX - lastX, mouseY - lastY);
-    if (dist > 5) {
-      const count = Math.min(Math.floor(dist / 5), 5);
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle(mouseX, mouseY));
-      }
-      lastX = mouseX;
-      lastY = mouseY;
+    const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+    if (dist > 8) {
+      const count = Math.min(Math.floor(dist / 6), 5);
+      for (let i = 0; i < count; i++) particles.push(new Particle(e.clientX, e.clientY));
+      lastX = e.clientX;
+      lastY = e.clientY;
     }
   });
 
-  // Burst on click
   document.addEventListener('click', (e) => {
-    for (let i = 0; i < 20; i++) {
-      particles.push(new Particle(e.clientX, e.clientY));
-    }
+    for (let i = 0; i < 18; i++) particles.push(new Particle(e.clientX, e.clientY));
   });
 
-  // Scroll sprinkles
-  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     const delta = Math.abs(window.scrollY - lastScrollY);
-    if (delta > 5) {
-      const count = Math.min(Math.floor(delta / 10), 8);
+    if (delta > 8) {
+      const count = Math.min(Math.floor(delta / 12), 8);
       for (let i = 0; i < count; i++) {
         particles.push(new Particle(
           Math.random() * window.innerWidth,
