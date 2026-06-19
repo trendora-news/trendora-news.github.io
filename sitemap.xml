@@ -22,4 +22,9 @@
   <url><loc>https://trendora-news.github.io/posts/us-blocks-ai.html</loc></url>
   <url><loc>https://trendora-news.github.io/posts/india-ai-revenue.html</loc></url>
   <url><loc>https://trendora-news.github.io/posts/india-ai-revolution-metro-story.html</loc></url>
+  <url>
+  <loc>https://trendora-news.github.io/posts/meta-india-data-center.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.95</priority>
+</url>
 </urlset>
